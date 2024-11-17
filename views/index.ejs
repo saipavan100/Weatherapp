@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        .recent {
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form action="/" method="GET">
+            <input type="text" name="city" placeholder="Enter city" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        <% if (weather) { %>
+            <h2>Weather in <%= weather.city %></h2>
+            <p>Temperature: <%= weather.temp %>°C</p>
+            <p>Description: <%= weather.desc %></p>
+        <% } %>
+
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <div class="recent">
+            <h3>Recent Searches</h3>
+            <ul>
+                <% recentSearches.forEach(search => { %>
+                    <li><%= search.city %> (<%= search.date.toDateString() %>)</li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
